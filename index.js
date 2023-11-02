@@ -9,4 +9,4 @@ let { data: Clientes, error } = await supabase
     .from('Clientes')
     .select('*')
 
-console.log( Clientes[0].id , Clientes[0].created_at)
+export default Clientes
