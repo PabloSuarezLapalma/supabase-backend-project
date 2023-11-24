@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type= "module" src="index.js"></script>
     <script type= "module" src="main.js"></script>
+    <script type= "module" src="validation.js"></script>
+    <script type= "module" src="extra.js"></script>
     <title>Supabase</title>
 </head>
 <body>
     <h1>Supabase</h1>
     <form id="agregar-cliente-form">
+        <label>Username</label>
+        <input type="text" id="username" name="username" placeholder="usuario"><br>
+        <label>Password</label>
+        <input type="password" id="password" name="password" placeholder="contrasenia"><br>
         <label>codigo</label>
         <input type="text" id="codigo" name="codigo" placeholder="codigo"><br>
         <label>nombreCliente</label>

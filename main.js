@@ -35,6 +35,8 @@ submitButton.addEventListener('click', async function(event) {
     const cuit = document.getElementById('cuit').value;
     const telefono = document.getElementById('telefono').value;
     const email = document.getElementById('email').value;
+    const usuario = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
 
     console.log("CODIGO: ",codigo);
     console.log("NOMBRE: ",nombre);
@@ -42,11 +44,13 @@ submitButton.addEventListener('click', async function(event) {
     console.log("CUIT: ",cuit);
     console.log("TELEFONO: ",telefono);
     console.log("EMAIL: ",email);
+    console.log("Usuario: ",usuario);
+    console.log("Password: ",password);
 
     const { data, error } = await supabase
         .from('Clientes')
         .insert([
-            { codigo: codigo, nombreCliente: nombre,  responsable: responsable, cuit: cuit, telefono: telefono, email: email },
+            { codigo: codigo, nombreCliente: nombre,  responsable: responsable, cuit: cuit, telefono: telefono, email: email, username: usuario, password: password},
         ])
         .select();
      location.reload();
