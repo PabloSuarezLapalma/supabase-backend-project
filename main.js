@@ -16,14 +16,7 @@
      clientesList.appendChild(li);
  });
 
- const codigo = document.getElementById("codigo").value;
- const nombre = document.getElementById("nombreCliente").value;
- const responsable = document.getElementById("responsable").value;
- const cuit = document.getElementById("cuit").value;
- const telefono = document.getElementById("telefono").value;
- const email = document.getElementById("email").value;
-
-
+ 
 const submitButton2 = document.getElementById('submit-button');
 
 submitButton2.addEventListener('click', function(event) {
@@ -33,7 +26,7 @@ submitButton2.addEventListener('click', function(event) {
 
 const submitButton = document.getElementById('submit-button');
 
-submitButton.addEventListener('click', function(event) {
+submitButton.addEventListener('click', async function(event) {
     event.preventDefault();
 
     const codigo = document.getElementById('codigo').value;
@@ -49,11 +42,13 @@ submitButton.addEventListener('click', function(event) {
     console.log("CUIT: ",cuit);
     console.log("TELEFONO: ",telefono);
     console.log("EMAIL: ",email);
-});
 
-const { data, error } = await supabase
+    const { data, error } = await supabase
         .from('Clientes')
         .insert([
             { codigo: codigo, nombreCliente: nombre,  responsable: responsable, cuit: cuit, telefono: telefono, email: email },
         ])
-        .select()
+        .select();
+     location.reload();
+    // Handle the response or error here
+});
