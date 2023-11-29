@@ -15,4 +15,4 @@ const { data, error } = await supabase
 location.reload();
 
 //TODO: Método para devolver un listado de movimientos en formato JSON. 
-//?Librería Jsonify podría servir para esto.
+//*Librería Jsonify podría servir para esto.
