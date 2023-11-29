@@ -14,5 +14,13 @@ const { data, error } = await supabase
 .select();
 location.reload();
 
-//TODO: Método para devolver un listado de movimientos en formato JSON. 
+//TODO: Adaptar esto para devolver un listado de movimientos en formato JSON. 
+
+let { data: Clientes, error2 } = await supabase
+    .from('Clientes')
+    .select('*')
+
+export default Clientes
+
+
 //*Librería Jsonify podría servir para esto.
