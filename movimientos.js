@@ -31,7 +31,7 @@ async function insertMovimiento(codigo, fechaHora, nroRemito, estado, responsabl
         const { data, error } = await supabase
             .from('Movimientos')
             .insert([
-                { codBWS: codigo, fechaHora: fechaHora, nroRemito: nroRemito, estado: estado, nombreResponsable: responsable, descripTransporte: transporte, chasis: chasis, chofer: chofer, acoplado: acoplado, costo: costo, idMercaderia: idMercaderia},
+                { codigoBWS: codigo, fechaHora: fechaHora, nroRemito: nroRemito, estado: estado, nombreResponsable: responsable, descripTransporte: transporte, chasis: chasis, chofer: chofer, acoplado: acoplado, costo: costo, idMercaderia: idMercaderia},
             ])
             .select()
         if (error) {
@@ -51,7 +51,7 @@ async function deleteMovimiento(codigoBWS){
         const { error } = await supabase
             .from('Movimientos')
             .delete()
-            .eq('codBWS', codigoBWS)
+            .eq('codigoBWS', codigoBWS)
         if (error) {
             code=1;
             throw new Error(error.message);}
@@ -62,14 +62,19 @@ async function deleteMovimiento(codigoBWS){
     }
 }
 
-async function filtrarMovimiento(codBWS){
+async function filtrarMovimiento(codigoBWS){
     let code=0;
     try{
         let { data: Movimientos, error } = await supabase
         .from('Movimientos')
         .select("*")
-        // Filters
-        .ilike('codBWS', codBWS)
+        .ilike('codigoBWS', codigoBWS)
+        if (error) {
+            code=1;
+            throw new Error(error.message);}   
+        let listaFiltrada = Movimientos.map(item => {
+            return item;});
+        return listaFiltrada; 
     }
     catch (error){
        code=1;
@@ -79,6 +84,8 @@ async function filtrarMovimiento(codBWS){
 
 //deleteMovimiento("PBC-BJ1-3212");
 
-//?Si se descomenta esto para probar por consola, cambiar el valor del codBWS, porque sino no deja hacer el insert porque existen claves primarias duplicadas
-console.log(insertMovimiento("PBC-BJ1-3212","2023-11-04T01:48" ,"123456789","EGRESO","Juan Perez","Transporte 1","Chasis 1","Chofer 1","Acoplado 1",3,"1001"));
+//?Si se descomenta esto para probar por consola, cambiar el valor del codigoBWS, porque sino no deja hacer el insert porque existen claves primarias duplicadas
+//console.log(insertMovimiento("PBC-BJ1-3212","2023-11-04T01:48" ,"123456789","EGRESO","Juan Perez","Transporte 1","Chasis 1","Chofer 1","Acoplado 1",3,"1001"))
 
+let filtrada=filtrarMovimiento("PBC-BJ1-3212")
+console.log(filtrada)
