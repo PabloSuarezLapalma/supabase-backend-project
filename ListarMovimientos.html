@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="module" src="movimientos.js"></script>
+    <title>Listar Movimientos</title>
+</head>
+<body>
+    <form id="agregar-movimiento-form">
+        <label>Código BWS</label>
+        <input type="text" id="codBWS" name="codBWS" placeholder="BWS-AAA-AJ1"><br>
+        <label>Fecha y Hora</label>
+        <input type="datetime-local" id="fechaHora" name="fechaHora" placeholder="actual"><br>
+        <label>Nro Remito</label>
+        <input type="text" id="nroRemito" name="nroRemito" placeholder="Número de Remito"><br>
+        <label>Estado</label>
+        <input type="text" id="estado" name="estado" placeholder="estado" ><br>
+        <label>Nombre Responsable</label>
+        <input type="text" id="responsable" name="responsable" placeholder="responsable"><br>
+        <label>Descripción Transporte</label>
+        <input type="text" id="transporte" name="transporte" placeholder="transporte"><br>
+        <label>Chasis</label>
+        <input type="text" id="chasis" name="chasis" placeholder="chasis"><br>
+        <label>Chofer</label>
+        <input type="text" id="chofer" name="chofer" placeholder="chofer" ><br>
+        <label>Acoplado</label>
+        <input type="text" id="acoplado" name="acoplado" placeholder="acoplado" ><br>
+        <label>Costo</label>
+        <input type="text" id="costo" name="costo" placeholder="costo" ><br>
+        <label>Id Mercadería Asociada</label>
+        <input type="text" id="idMercaderia" name="idMercaderia" placeholder="idMercaderia" ><br>
+    </form>
+    <button type="submit" id="agregar-movimiento">Agregar</button>
+    <br>
+    <h1>Listado de Movimientos</h1>
+    <ul id="lista-movimientos"></ul>
+    <p>Data retrieved from Supabase Database</p>
+</body>
+</html>
