@@ -5,7 +5,7 @@ const SUPABASE_URL = 'https://ewathdqpvxumtxwrmwgw.supabase.co'
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY  )
 
 
-async function getClientes() {
+export  async function obtenerClientes() {
     try {
         let { data: Clientes, error } = await supabase
             .from('Clientes')
@@ -26,7 +26,7 @@ async function getClientes() {
 //const listaClientes = getClientes();
 //console.log(listaClientes);
 
-async function insertarCliente(codigo, nombreCliente, responsable, cuit, telefono, email, username, password){
+export  async function agregarCliente(codigo, nombreCliente, responsable, cuit, telefono, email, username, password){
     let code=0;
     try {
         const { data, error } = await supabase
@@ -48,7 +48,7 @@ async function insertarCliente(codigo, nombreCliente, responsable, cuit, telefon
 
 //console.log(insertarCliente("FEP2","Fepasa","Franco Pasa","19-12345678-0","424242","contacto@cedal.com.ar","fepasa","fepasa123"))
 
-async function deleteCliente(codigo){
+export  async function borrarCliente(codigo){
     let code=0;
     try{
         const { error } = await supabase
@@ -67,7 +67,7 @@ async function deleteCliente(codigo){
 
 //console.log(deleteCliente("FEP2"))
 
-async function filtrarCliente(nombreCliente){
+export  async function buscarCliente(nombreCliente){
     let code=0;
     try{
         let { data: Movimientos, error } = await supabase
@@ -87,7 +87,27 @@ async function filtrarCliente(nombreCliente){
 }
 }
 
-//*Esta es la forma de acceder a los datos de la función, como es asíncrono siempre el resultado es una Promise, por lo que se debe acceder de la siguiente manera para poder manipular los datos
+export  async function actualizarCliente(codigo,columnaModificar, nuevoValor) {
+    try {
+        const { data, error } = await supabase
+            .from('Clientes')
+            .update({ [columnaModificar]: nuevoValor })
+            .eq("codigo", codigo)
+            .select();
+
+        if (error) {
+            console.error("Error updating Cliente:", error.message);
+        } else {
+            console.log("Cliente updated successfully:", data);
+        }
+    } catch (error) {
+        console.error("Unexpected error:", error.message);
+    }
+}
+
+
+
+//!Esta es la forma de acceder a los datos de la función, como es asíncrono siempre el resultado es una Promise, por lo que se debe acceder de la siguiente manera para poder manipular los datos
 
 /*
 filtrarCliente("apacuero10").then(resultado=> {
@@ -109,3 +129,5 @@ filtrarCliente("apacuero10").then(resultado=> {
     console.error("Error en la promesa:", error);
 });
 */
+// Example usage
+//updateCliente("FEP","password","fepasa");

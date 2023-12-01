@@ -4,7 +4,7 @@ const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 const SUPABASE_URL = 'https://ewathdqpvxumtxwrmwgw.supabase.co'
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY  )
 
-async function getMovimientos() {
+export  async function obtenerMovimientos() {
     try {
         let { data: Movimientos, error } = await supabase
             .from('Movimientos')
@@ -25,7 +25,7 @@ async function getMovimientos() {
 //const listaDeMovimientos = getMovimientos();
 //console.log(listaDeMovimientos);
 
-async function insertMovimiento(codigo, fechaHora, nroRemito, estado, responsable, transporte, chasis, chofer, acoplado, costo, idMercaderia){
+export  async function insertarMovimiento(codigo, fechaHora, nroRemito, estado, responsable, transporte, chasis, chofer, acoplado, costo, idMercaderia){
     let code=0;
     try {
         const { data, error } = await supabase
@@ -45,7 +45,7 @@ async function insertMovimiento(codigo, fechaHora, nroRemito, estado, responsabl
     return code
 }
 
-async function deleteMovimiento(codigoBWS){
+export  async function borrarMovimiento(codigoBWS){
     let code=0;
     try{
         const { error } = await supabase
@@ -62,7 +62,7 @@ async function deleteMovimiento(codigoBWS){
     }
 }
 
-async function filtrarMovimiento(codigoBWS){
+export  async function filtrarMovimiento(codigoBWS){
     let code=0;
     try{
         let { data: Movimientos, error } = await supabase
@@ -89,7 +89,7 @@ async function filtrarMovimiento(codigoBWS){
 
 //let filtrada=filtrarMovimiento("PBC-BJ1-3212")
 
-//*Esta es la forma de acceder a los datos de la función, como es asíncrono siempre el resultado es una Promise, por lo que se debe acceder de la siguiente manera para poder manipular los datos
+//!Esta es la forma de acceder a los datos de la función, como es asíncrono siempre el resultado es una Promise, por lo que se debe acceder de la siguiente manera para poder manipular los datos
 /*
 filtrarMovimiento("PBC-BJ1-3212").then(resultado=> {
     if (Array.isArray(resultado)) {
