@@ -87,5 +87,26 @@ async function filtrarMovimiento(codigoBWS){
 //?Si se descomenta esto para probar por consola, cambiar el valor del codigoBWS, porque sino no deja hacer el insert porque existen claves primarias duplicadas
 //console.log(insertMovimiento("PBC-BJ1-3212","2023-11-04T01:48" ,"123456789","EGRESO","Juan Perez","Transporte 1","Chasis 1","Chofer 1","Acoplado 1",3,"1001"))
 
-let filtrada=filtrarMovimiento("PBC-BJ1-3212")
-console.log(filtrada)
+//let filtrada=filtrarMovimiento("PBC-BJ1-3212")
+
+//*Esta es la forma de acceder a los datos de la función, como es asíncrono siempre el resultado es una Promise, por lo que se debe acceder de la siguiente manera para poder manipular los datos
+/*
+filtrarMovimiento("PBC-BJ1-3212").then(resultado=> {
+    if (Array.isArray(resultado)) {
+        // Itera sobre cada elemento del array
+        resultado.forEach(elemento => {
+            console.log("Código BWS:", elemento.codigoBWS);
+            console.log("Fecha y Hora:", elemento.fechaHora);
+            console.log("Responsable:", elemento.nombreResponsable);
+            console.log("idMercaderia:", elemento.idMercaderia);
+            console.log("Descripcion:", elemento.descripcionTransporte);
+            // ... y así sucesivamente para otros campos
+        });
+    } else {
+        console.error("El resultado no es un array.");
+    }
+})
+.catch(error => {
+    console.error("Error en la promesa:", error);
+});
+*/
