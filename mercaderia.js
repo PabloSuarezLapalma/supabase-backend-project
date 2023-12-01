@@ -21,6 +21,7 @@ export  async function obtenerMercaderias() {
         console.error(error);
     }
 }
+console.log(obtenerMercaderias())
 export  async function agregarMercaderia(idMercaderia, descripcion, largo, ancho, idPosicion, cantidad){
     let code=0;
     try {
