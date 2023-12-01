@@ -78,6 +78,9 @@ export  async function buscarMercaderia(idMercaderia){
 }
 }
 
+console.log(buscarMercaderia("cajasMate"))
+
+
 export  async function actualizarMercaderia(idMercaderia,columnaModificar, nuevoValor) {
     try {
         const { data, error } = await supabase

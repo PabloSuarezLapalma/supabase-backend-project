@@ -22,16 +22,16 @@ export  async function obtenerMovimientos() {
     }
 }
 //?Descomentar para ver por consola el listado de movimientos
-//const listaDeMovimientos = getMovimientos();
-//console.log(listaDeMovimientos);
+const listaDeMovimientos = obtenerMovimientos();
+console.log(listaDeMovimientos);
 
-export  async function insertarMovimiento(codigo, fechaHora, nroRemito, estado, responsable, transporte, chasis, chofer, acoplado, costo, idMercaderia){
+export  async function insertarMovimiento(codigo, fecha,hora, nroRemito, estado, responsable, transporte, chasis, chofer, acoplado, costo, idMercaderia){
     let code=0;
     try {
         const { data, error } = await supabase
             .from('Movimientos')
             .insert([
-                { codigoBWS: codigo, fechaHora: fechaHora, nroRemito: nroRemito, estado: estado, nombreResponsable: responsable, descripTransporte: transporte, chasis: chasis, chofer: chofer, acoplado: acoplado, costo: costo, idMercaderia: idMercaderia},
+                { codigoBWS: codigo, fecha:fecha,hora:hora, nroRemito: nroRemito, estado: estado, nombreResponsable: responsable, descripTransporte: transporte, chasis: chasis, chofer: chofer, acoplado: acoplado, costo: costo, idMercaderia: idMercaderia},
             ])
             .select()
         if (error) {
