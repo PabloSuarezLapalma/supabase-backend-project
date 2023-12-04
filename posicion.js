@@ -69,7 +69,6 @@ export  async function buscarPosicion(idPosicion){
         return listaFiltrada; 
     }
     catch (error){
-       code=1;
        console.log(error)
     }
 }

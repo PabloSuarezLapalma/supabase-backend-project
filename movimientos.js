@@ -68,7 +68,6 @@ export  async function filtrarMovimiento(codigoCliente){
         .select("*")
         .ilike('codigoCliente', codigoCliente)
         if (error) {
-            code=1;
             throw new Error(error.message);}   
         let listaFiltrada = Movimientos.map(item => {return item;});
         return listaFiltrada; 
@@ -86,7 +85,6 @@ export async function filtrarMovimientosEntreFechas(fechaInicio, fechaFin){
         .gte('fecha', fechaInicio)
         .lte('fecha', fechaFin)
         if (error) {
-            code=1;
             throw new Error(error.message);}   
         let listaFiltrada = Movimientos.map(item => {return item;});
         return listaFiltrada; 
