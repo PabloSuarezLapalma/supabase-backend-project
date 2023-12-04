@@ -9,21 +9,18 @@ export  async function obtenerMovimientos() {
         let { data: Movimientos, error } = await supabase
             .from('Movimientos')
             .select('*');
-
         if (error) {
             throw new Error(error.message);
         }
-
-        let listaDeMovimientos = Movimientos.map(item => {
-            return item;});
+        let listaDeMovimientos = Movimientos.map(item => {return item;});
         return listaDeMovimientos;
     } catch (error) {
         console.error(error);
     }
 }
 //?Descomentar para ver por consola el listado de movimientos
-const listaDeMovimientos = obtenerMovimientos();
-console.log(listaDeMovimientos);
+//const listaDeMovimientos = obtenerMovimientos();
+//console.log(listaDeMovimientos);
 
 export  async function insertarMovimiento(codigo, fecha,hora, nroRemito, estado, responsable, transporte, chasis, chofer, acoplado, costo, idMercaderia){
     let code=0;
@@ -60,10 +57,10 @@ export  async function borrarMovimiento(codigoBWS){
         code=1;
         console.error(error);
     }
+    return code
 }
 
 export  async function filtrarMovimiento(codigoBWS){
-    let code=0;
     try{
         let { data: Movimientos, error } = await supabase
         .from('Movimientos')
@@ -72,12 +69,10 @@ export  async function filtrarMovimiento(codigoBWS){
         if (error) {
             code=1;
             throw new Error(error.message);}   
-        let listaFiltrada = Movimientos.map(item => {
-            return item;});
+        let listaFiltrada = Movimientos.map(item => {return item;});
         return listaFiltrada; 
     }
     catch (error){
-       code=1;
        console.log(error)
 }
 }
