@@ -81,6 +81,22 @@ export  async function buscarCliente(nombreCliente){
 }
 }
 
+export async function obtenerCodigoCliente(nombreCliente){
+    try{
+        let { data: Clientes, error } = await supabase
+        .from('Clientes')
+        .select("*")
+        .ilike('nombreCliente', nombreCliente)
+        if (error) {
+            throw new Error(error.message);}   
+        let listaFiltrada = Clientes.map(item => {return item;});
+        return listaFiltrada[0].codigo; 
+    }
+    catch (error){
+       console.log(error)
+}
+}
+
 export  async function actualizarCliente(codigo,columnaModificar, nuevoValor) {
     let code=0;
     try {
