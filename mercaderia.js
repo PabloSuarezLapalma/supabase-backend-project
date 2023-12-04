@@ -4,11 +4,12 @@ const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 const SUPABASE_URL = 'https://ewathdqpvxumtxwrmwgw.supabase.co'
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY  )
 
-export  async function obtenerMercaderias() {
+export  async function obtenerCienPrimerasMercaderias() {
     try {
         let { data: Mercaderias, error } = await supabase
             .from('Mercaderias')
-            .select('*');
+            .select('*')
+            .range(0, 100)
         if (error) {
             throw new Error(error.message);
         }
@@ -18,7 +19,7 @@ export  async function obtenerMercaderias() {
         console.error(error);
     }
 }
-//console.log(obtenerMercaderias())
+
 export  async function agregarMercaderia(idMercaderia, descripcion, largo, ancho, idPosicion, cantidad){
     let code=0;
     try {
@@ -72,9 +73,6 @@ export  async function buscarMercaderia(idMercaderia){
        console.log(error)
 }
 }
-
-//console.log(buscarMercaderia("cajasMate"))
-
 
 export  async function actualizarMercaderia(idMercaderia,columnaModificar, nuevoValor) {
     let code=1;

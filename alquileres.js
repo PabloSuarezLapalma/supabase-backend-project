@@ -4,11 +4,12 @@ const SUPABASE_SERVICE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzd
 const SUPABASE_URL = 'https://ewathdqpvxumtxwrmwgw.supabase.co'
 const supabase = createClient(SUPABASE_URL, SUPABASE_SERVICE_KEY)
 
-export  async function obtenerAlquileres() {
+export  async function obtenerCienPrimerosAlquileres() {
     try {
         let { data: Alquileres, error } = await supabase
             .from('Alquileres')
-            .select('*');
+            .select('*')
+            .range(0, 100)
         if (error) {
             throw new Error(error.message);
         }
